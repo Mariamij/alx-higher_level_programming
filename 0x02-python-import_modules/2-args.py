@@ -1,19 +1,20 @@
-
 #!/usr/bin/python3
-if __name__ == "__main__":
-    import sys
-    i = len(sys.argv) - 1
 
-    if i == 0:
-        print("{} arguments.".format(i))
-    elif i == 1:
-        print("{} argument:".format(i))
+from sys import argv as args
+
+
+def commandline_args():
+    if len(args) < 2:
+        print("{} arguments.".format(0))
+    elif len(args) == 2:
+        print("{} argument:".format(len(args[1:])))
+        for count, arg in enumerate(args[1:], start=1):
+            print("{}: {}".format(count, arg))
     else:
-        print("{} arguments:".format(i))
+        print("{} arguments:".format(len(args[1:])))
+        for count, arg in enumerate(args[1:], start=1):
+            print("{}: {}".format(count, arg))
 
-    if i >= 1:
-        i = 0
-        for arg in sys.argv:
-            if i != 0:
-                print("{}: {}".format(i, arg))
-            i += 1
+
+if __name__ == "__main__":
+    commandline_args()
